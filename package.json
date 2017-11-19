@@ -1,5 +1,5 @@
 {
-  "name": "react-firebase",
+  "name": "@leonardodino/react-firebase",
   "version": "2.2.6",
   "description": "React bindings for Firebase",
   "author": "Unfold <github@unfold.no> (http://github.com/unfold)",
