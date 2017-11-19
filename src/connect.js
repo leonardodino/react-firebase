@@ -3,7 +3,14 @@ import { Component, createElement } from 'react'
 import invariant from 'invariant'
 import firebase from 'firebase/app'
 import 'firebase/database'
-import { createQueryRef, getDisplayName, mapValues, mapSnapshotToValue, pickBy } from './utils'
+import {
+  createQueryRef,
+  getDisplayName,
+  mapValues,
+  mapSnapshotToValue,
+  pickBy,
+  deepEqual,
+} from './utils'
 
 const defaultMergeProps = (ownProps, firebaseProps) => ({
   ...ownProps,
@@ -64,7 +71,7 @@ export default (mapFirebaseToProps = defaultMapFirebaseToProps, mergeProps = def
         const removedSubscriptions = pickBy(subscriptions, (path, key) => !nextSubscriptions[key])
         const changedSubscriptions = pickBy(
           nextSubscriptions,
-          (path, key) => subscriptions[key] && subscriptions[key] !== path
+          (path, key) => subscriptions[key] && !deepEqual(subscriptions[key], path)
         )
 
         this.unsubscribe({ ...removedSubscriptions, ...changedSubscriptions })

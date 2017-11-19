@@ -39,3 +39,5 @@ export const mapSnapshotToValue = snapshot => {
 
   return result
 }
+
+export const deepEqual = (object1, object2) => JSON.stringify(object1) === JSON.stringify(object2)
